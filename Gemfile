@@ -8,6 +8,11 @@ gem 'rails', '~> 5.2.0'
 # Encryption
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 #gem 'bcrypt', '~> 3.1.11'
+# Faker Gem
+gem 'faker', '>= 1.7.3'
+# Pagination
+gem 'will_paginate',           '>= 3.1.6'
+gem 'bootstrap-will_paginate', '>= 1.0.0'
 # Instucted by Powershell -_-
 gem 'rails-controller-testing'
 # Use bootstrap
