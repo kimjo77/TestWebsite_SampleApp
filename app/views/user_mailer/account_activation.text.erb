@@ -1,0 +1,5 @@
+Hi <%= @user.name %>,
+
+Welcome to the Sample App! This is the Last step in creating your account!
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
