@@ -11,6 +11,11 @@ class User < ApplicationRecord
   # has_many :followers, through: :passive_relationships, source: :follower
   has_many :followers, through: :passive_relationships
 
+  has_many :active_votes, class_name:  "Vote",
+                                foreign_key: "voter_id",
+                                dependent:   :destroy
+  has_many :likes, through: :active_votes, source: :micropost
+
   attr_accessor :remember_token, :activation_token, :reset_token
 
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -124,6 +129,21 @@ class User < ApplicationRecord
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # Likes a post.
+  def like(post)
+    likes << post
+  end
+
+  # Unlikes a post.
+  def unlike(post)
+    likes.delete(post)
+  end
+
+  # Returns true if the current user likes the post.
+  def likes?(post)
+    likes.include?(post)
   end
 
   private

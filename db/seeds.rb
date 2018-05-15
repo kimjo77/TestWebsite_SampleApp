@@ -38,3 +38,9 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+# Liking posts
+user_post = User.first.microposts.first
+users = User.all
+users = users[2..50]
+users.each {|user| user.like(user_post)}

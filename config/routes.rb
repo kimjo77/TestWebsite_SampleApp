@@ -20,11 +20,17 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :likes
+    end
+  end
+  resources :microposts do
+    member do
+      get :likes
     end
   end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
+  resources :votes,               only: [:create, :destroy]
 end

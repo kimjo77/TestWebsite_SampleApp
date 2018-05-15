@@ -34,4 +34,14 @@ class MicropostTest < ActiveSupport::TestCase
   test "order should be most recent first" do
     assert_equal microposts(:most_recent), Micropost.first
   end
+
+  test "should like and unlike a post" do
+    post = microposts(:orange)
+    archer  = users(:Archer)
+    assert_not archer.likes?(post)
+    archer.like(post)
+    assert archer.likes?(post)
+    archer.unlike(post)
+    assert_not archer.likes?(post)
+  end
 end
